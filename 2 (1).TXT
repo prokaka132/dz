@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    string surname;
+    string group;
+    int grades[5];
+};
+
+int main() {
+    int n;
+    cout << "кількість студентів: ";
+    cin >> n;
+
+    Student* st = new Student[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "прізвище: ";
+        cin >> st[i].surname;
+
+        cout << "Група: ";
+        cin >> st[i].group;
+
+        cout << "введіть 5 оцінок: ";
+        for (int j = 0; j < 5; j++) {
+            cin >> st[i].grades[j];
+        }
+    }
+
+    cout << "\nвідмінники:\n";
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+
+        for (int j = 0; j < 5; j++) {
+            if (st[i].grades[j] == 5) count++;
+        }
+
+        if (count >= 4) {
+            cout << st[i].surname << endl;
+        }
+    }
+
+    cout << "\nДвієчники:\n";
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+
+        for (int j = 0; j < 5; j++) {
+            if (st[i].grades[j] == 2 || st[i].grades[j] == 3) count++;
+        }
+
+        if (count >= 3) {
+            cout << st[i].surname << endl;
+        }
+    }
+
+    delete[] st;
+
+    return 0;
+}
